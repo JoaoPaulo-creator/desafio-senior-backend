@@ -10,12 +10,9 @@ class PunchTheCardController extends BaseController {
   }
 
   @Post('/create')
-  async store(
-    @body() { employerId, employeeId }: PunchTheCardDTO,
-    @response() res: any
-  ) {
+  async store(@body() payload: PunchTheCardDTO, @response() res: any) {
     return this.callUseCaseAsync(
-      this.useCase.execute({ employerId, employeeId }),
+      this.useCase.execute(payload),
       res,
       StatusCode.Created
     );
